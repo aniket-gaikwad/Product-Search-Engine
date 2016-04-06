@@ -1,0 +1,47 @@
+
+<!doctype html>
+<html lang="en-US">  
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Search Engine</title>
+    {% load staticfiles %}
+      
+    <link rel='stylesheet' href="{% static 'css/maindes.css' %}" type='text/css' media='all'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/ajax.js' %}"></script>
+    
+
+    {% block extra_head %}
+    <div id="layout">
+    <div class="main">
+        <div class="header">
+                <div class="hero-unit centerheader">
+                        <h1> EDMODO product search</h1></br>
+                    </div>
+        </div>
+    </div>
+    </div>
+    {% endblock %}
+</head>
+<meta charset="utf-8">
+<body>
+
+{% block page_content %}
+    
+    
+{% endblock %}
+
+{% block extra_foot %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+</body>
+</html>

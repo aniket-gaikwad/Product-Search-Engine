@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block page_content %}
+	{% csrf_token %}
+	{{ block.super }}
+	{% load staticfiles %}
+	<div class="container-fluid"> 
+	<div id="content1">
+            <div class="col-md-12 ">
+                    <fieldset id='searchcenter'>
+                    	<div class="col-md-3">	
+	                        <input class="form-control" id="search" type="text" placeholder="Enter Here"  >
+	                    </div> 
+	                    <div class="col-md-3">   
+	                    	<button id="button_1" type="button" class="btn btn-primary">Search</button>
+                    	</div>
+                    		<img src="{% static 'img/loading-gif.gif' %}" class="hide loading-gif"/>
+               		</fieldset>
+            </div>
+        </div>
+	     <div id="tableData">  </div>
+	</div>
+ 
+	 
+ 
+{% endblock %}
+
+{% block js %}
+<script>
+
+$(document).ready( function(){
+
+ $('body').on( "click",".open-modal", function(){
+	var a=$(this).attr('id');
+	$('#product-id').val(a);
+	$('#product-title').html($(this).data('title'));
+	//$("#myModal").find("input:checkbox").removeAttr('checked');
+	var abc = $(this).parent().parent().find(".entry-inappropriate").html();
+	if( $(this).parent().parent().find(".entry-inappropriate").html() == 1)
+		$('#inappropriate').attr("checked", "checked");
+	else
+		$('#inappropriate').removeAttr("checked");
+
+	if( $(this).parent().parent().find(".entry-wrong_tags").html() == 1)
+		$('#wrong_tags').attr("checked", "checked");
+	else
+		$('#wrong_tags').removeAttr("checked");
+
+	if( $(this).parent().parent().find(".entry-not_helpful").html() == 1)
+		$('#not_helpful').attr("checked", "checked");
+	else
+		$('#not_helpful').removeAttr("checked");
+
+	if( $(this).parent().parent().find(".entry-spam").html() == 1)
+		$('#spam').attr("checked", "checked");
+	else
+		$('#spam').removeAttr("checked");
+
+});
+
+});
+</script>
+
+{% endblock %}
+
+

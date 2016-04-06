@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block page_content %}
+	<div class="content pure-g-r"> 
+	    <div id="content1">
+	        <div class="pure-u-24-5">
+	             <input type="button" name="display" value="+" onclick="displayData();"/>
+	        </div>
+	    </div>
+	    <div id="content2" style="min-height:400px">
+	    	<div class="pure-u-24-19">
+	    	<table class="pure-table pure-table-bordered" id="myTable">
+			<div id="tableData">
+			 	<table class="pure-table">
+				    <thead>
+				        <tr>
+				        	<th>id</th>
+				            <th>index</th>
+				            <th>product_id</th>
+				            <th>long_desc_html</th>
+				            <th>seller_thumb_url</th>
+				            <th>resource_types</th>
+				            <th>content_type</th>
+				            <th>long_desc</th>
+				            <th>title</th>
+				            <th>greads_review_url</th>
+				            <th>url</th>
+				            <th>edm_score</th>
+				            <th>avg_rating</th>
+				            <th>creation_date</th>
+				        </tr>
+				    </thead>
+
+				    <tbody>
+				    	{% for dist in data %}
+				        <tr class="pure-table-odd">
+				        	<td>"{{ dist.id }}"</td>
+				            <td>"{{ dist.index }}"</td>
+				            <td>"{{ dist.product_id }}"</td>
+				            <td>"{{ dist.long_desc_html }}"</td>
+				            <td>"{{ dist.seller_thumb_url }}"</td>
+				            <td>"{{ dist.resource_types }}"</td>
+				            <td>"{{ dist.content_type }}"</td>
+				            <td>"{{ dist.long_desc }}"</td>
+				            <td>"{{ dist.title }}"</td>
+				            <td>"{{ dist.greads_review_url }}"</td>
+				            <td>"{{ dist.url }}"</td>
+				            <td>"{{ dist.edm_score }}"</td>
+				            <td>"{{ dist.avg_rating }}"</td>
+				            <td>"{{ dist.creation_date }}"</td>
+				        </tr>
+				         {% endfor %}
+					</tbody>
+				</table>   
+			</div>
+			</table>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+	function displayData(){
+		/*
+		$.get("/displayData/", function (data) {
+					alert(data.length);
+					var a=''
+					a+='<thead> <tr>'
+			        a+='	<th>_index</th>'
+			        a+='    <th>_id</th>'
+			        a+='    <th>long_desc_html</th>'
+			        a+='    <th>seller_thumb_url</th>'
+			        a+='    <th>resource_types</th>'
+			        a+='    <th>content_type</th>'
+			        a+='    <th>long_desc</th>'
+			        a+='    <th>title</th>'
+			        a+='    <th>greads_review_url</th>'
+			        a+='    <th>url</th>'
+			        a+='    <th>edm_score</th>'
+			        a+='    <th>avg_rating</th>'
+			        a+='    <th>creation_date</th></tr></thead>'
+
+	                a += '<tbody> ' 
+	                var cnt=0
+	                for (var i = 0; i < data.length; i++) {
+	                	if(cnt%2==0){
+	                		a+='<tr class="pure-table-odd">';
+	                			
+	                	}
+	                	else{
+	                		a+='<tr class="pure-table-odd">';
+	                	}
+	                	cnt+=1;
+	                    a += '<td>'+data[i][0]+'</td>';
+	                    a += '<td>'+data[i][1]+'</td>';
+	                    a += '<td>'+data[i][2]+'</td>';
+	                    a += '<td>'+data[i][3]+'</td>';
+	                    a += '<td>'+data[i][4]+'</td>';
+	                    a += '<td>'+data[i][5]+'</td>';
+	                    a += '<td>'+data[i][6]+'</td>';
+	                    a += '<td>'+data[i][7]+'</td>';
+	                    a += '<td>'+data[i][8]+'</td>';
+	                    a += '<td>'+data[i][9]+'</td>';
+	                    a += '<td>'+data[i][10]+'</td>';
+	                    a += '<td>'+data[i][11]+'</td>';
+	                    a += '<td>'+data[i][12]+'</td>';
+	                    a+='</tr>'
+				  }
+				  a+='</tbody>'
+
+	                $("#tableData").html(a);
+	            });	 */
+
+		$.get("/displayData/", function (data) {
+					alert(data.length);
+					var a=''
+					a+='<thead> <tr>'
+			        a+='	<th>_index</th>'
+			        a+='    <th>_id</th>'
+			        a+='    <th>long_desc_html</th>'
+			        a+='    <th>seller_thumb_url</th>'
+			        a+='    <th>resource_types</th>'
+			        a+='    <th>content_type</th>'
+			        a+='    <th>long_desc</th>'
+			        a+='    <th>title</th>'
+			        a+='    <th>greads_review_url</th>'
+			        a+='    <th>url</th>'
+			        a+='    <th>edm_score</th>'
+			        a+='    <th>avg_rating</th>'
+			        a+='    <th>creation_date</th></tr></thead>'
+
+	                a += '<tbody> ' 
+	                var cnt=0
+	                {% for e in data %}
+	                 
+	                	if(cnt%2==0){
+	                		a+='<tr class="pure-table-odd">';
+	                			
+	                	}
+	                	else{
+	                		a+='<tr class="pure-table-odd">';
+	                	}
+	                	cnt+=1;
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a += '<td>'+"{{e.index}}"+'</td>';
+	                    a+='</tr>'
+				  
+				  {% endfor %}
+				  a+='</tbody>'
+
+	                $("#tableData").html(a);
+	            });
+	};
+
+</script>
+{% endblock %}
+
+

@@ -1,0 +1,106 @@
+{% load staticfiles %}
+
+<div class="container-fluid">
+<div id="content2" style="min-height:400px">
+	    </br></br></br></br>
+	    {% if data.count > 0 %}
+
+	    	<table class="table table-bordered table-striped table-hover" id="myTable1">
+				    <thead class="thead-inverse">
+				        <tr>
+				        	<th>Flag</th>
+				        	<th>Id</th>
+				            <th>Index</th>
+				            <th>Product Id</th>
+				            <th>Long Desc Html</th>
+				            <th>Seller Thumb Url</th>
+				            <th>Resource Types</th>
+				            <th>Content Type</th>
+				            <th>Long Desc</th>
+				            <th>Title</th>
+				            <th>Url</th>
+				            <th>Edm Score</th>
+				            <th>Avg Rating</th>
+				            <th>Creation Date</th>
+				            <th>Inappropriate</th>
+							<th>Not Helpful</th>
+							<th>Wrong Tags</th>
+							<th>Spam</th>
+				        </tr>
+				    </thead>
+				    
+				    <tbody>
+				    
+					{% for dist in data %}
+				        <tr>
+				        	<td> <button id="{{ dist.id }}" data-title="{{ dist.product_id }}" type="button" class="btn btn-primary open-modal"   data-toggle="modal" data-target="#myModal"> Flag </button> </td>
+				        	<td>{{ dist.id }}</td>
+				            <td>{{ dist.index }}</td>
+				            <td>{{ dist.product_id }}</td>
+				            <td>{{ dist.long_desc_html }}</td>
+				            <td>{{ dist.seller_thumb_url }}</td>
+				            <td>{{ dist.resource_types }}</td>
+				            <td>{{ dist.content_type }}</td>
+				            <td>{{ dist.long_desc }}</td>
+				            <td>{{ dist.title }}</td>
+				            <td>{{ dist.url }}</td>
+				            <td>{{ dist.edm_score }}</td>
+				            <td>{{ dist.avg_rating }}</td>
+				            <td>{{ dist.creation_date }}</td>
+				            <td class="entry-inappropriate">{{ dist.Inappropriate }}</td>
+				            <td class="entry-not_helpful">{{ dist.not_helpful }}</td>
+				            <td class="entry-wrong_tags">{{ dist.wrong_tags }}</td>
+				            <td class="entry-spam">{{ dist.spam }}</td>
+				            
+				        </tr>
+					{% endfor %}
+					
+
+					{% else %}
+
+					<h1>None to show!</h1>
+
+					{% endif %}	
+					</tbody>
+			</table>
+		 
+
+	 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true" style="display; none;" data-backdrop="static" data-keyboard="false" >
+		 	  <div class="modal-dialog">
+			  <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h1 class="modal-title" id="myModelLabel"> Please evaluate the result for Product : <span id="product-title"></span><h1>
+			      </div>
+			      <div class="modal-body">
+					<form id="flagged-values" class="form-group c-inputs-stacked">
+						<label class="c-input c-checkbox" for="inappropriate">
+		            		<input id="inappropriate" type="checkbox" name="inappropriate"> Inappropriate
+		        		</label></br>
+		        		<label class="c-input c-checkbox" for="not_helpful">
+		            		<input id="not_helpful" type="checkbox" name="not_helpful"> Not helpful
+		        		</label></br>
+		        		<label class="c-input c-checkbox" for="wrong_tags">
+		            		<input id="wrong_tags" type="checkbox" name="wrong_tags"> Wrong tags
+		        		</label></br>
+		        		<label class="c-input c-checkbox" for="spam">
+		            		<input id="spam" type="checkbox" name="spam"> Spam
+		        		</label>
+		        		<input id="product-id" type="hidden" value="" name="product-id"/>
+		        	</form>	     
+					<div class="col-md-12 text-center">
+			        	<img src="{% static 'img/loading-gif.gif' %}" class="hide loading-gif"/>
+			    	</div>
+
+					<div class="col-md-12 alert alert-success hide">Flag has been successfully updated</div>   
+			      </div>
+			      <div class="modal-footer">
+			      	<button id="save" class="btn btn-primary" aria-hidden="true"> Save </button>
+			        <button class="btn btn-secondary close-modal" type="button" data-dismiss="modal"> Close </button>
+			      </div>
+			    </div>
+			 </div>
+	      </div>
+	</div>
+
+ 
